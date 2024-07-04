@@ -1,77 +1,88 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
 
-const UserProfile = () => {
-  const [user, setUser] = useState({
-    username: '',
-    profilePicture: '',
-    bio: '',
-    followers: 0,
-    following: 0,
-    posts: [],
-  });
+const CreateUser = () => {
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [profilePicture, setProfilePicture] = useState(null);
+  const [bio, setBio] = useState('');
 
-  const [isFollowing, setIsFollowing] = useState(false);
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const formData = new FormData();
+    formData.append('username', username);
+    formData.append('email', email);
+    formData.append('password', password);
+    formData.append('profile_picture', profilePicture);
+    formData.append('bio', bio);
 
-  useEffect(() => {
-    // Fetch user data from API
-    const fetchData = async () => {
-      const response = await fetch(`/api/users/${username}`);
-      const data = await response.json();
-      setUser(data);
-    };
-    fetchData();
-  }, []);
-
-  const handleFollow = () => {
-    // Call API to follow/unfollow user
-    setIsFollowing(!isFollowing);
+    fetch('/api/users', {
+      method: 'POST',
+      body: formData,
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('User created:', data);
+      })
+      .catch((error) => {
+        console.error('Error creating user:', error);
+      });
   };
 
   return (
-    <div className="user-profile">
-      <header>
-        <div className="profile-picture">
-          <img src={user.profilePicture} alt={user.username} />
-        </div>
-        <div className="username">
-          <h1>{user.username}</h1>
-        </div>
-        <div className="follow-button">
-          {isFollowing? (
-            <button onClick={handleFollow}>Unfollow</button>
-          ) : (
-            <button onClick={handleFollow}>Follow</button>
-          )}
-        </div>
-      </header>
-      <section className="bio">
-        <p>{user.bio}</p>
-      </section>
-      <section className="stats">
-        <div>
-          <span>{user.followers} followers</span>
-        </div>
-        <div>
-          <span>{user.following} following</span>
-        </div>
-        <div>
-          <span>{user.posts.length} posts</span>
-        </div>
-      </section>
-      <section className="posts">
-        {user.posts.map((post) => (
-          <div key={post.id} className="post">
-            <img src={post.image} alt={post.caption} />
-            <div className="post-info">
-              <p>{post.caption}</p>
-              <span>{post.likes} likes</span>
-            </div>
-          </div>
-        ))}
-      </section>
+    <div className="create-user">
+      <h1>Create Account</h1>
+      <form onSubmit={handleSubmit}>
+        <label>
+          Username:
+          <input
+            type="text"
+            value={username}
+            onChange={(event) => setUsername(event.target.value)}
+            required
+          />
+        </label>
+        <br />
+        <label>
+          Email:
+          <input
+            type="email"
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
+            required
+          />
+        </label>
+        <br />
+        <label>
+          Password:
+          <input
+            type="password"
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+            required
+          />
+        </label>
+        <br />
+        <label>
+          Profile Picture:
+          <input
+            type="file"
+            onChange={(event) => setProfilePicture(event.target.files[0])}
+          />
+        </label>
+        <br />
+        <label>
+          Bio:
+          <textarea
+            value={bio}
+            onChange={(event) => setBio(event.target.value)}
+          />
+        </label>
+        <br />
+        <button type="submit">Create Account</button>
+      </form>
     </div>
   );
 };
 
-export default UserProfile;
+export default CreateUser;
