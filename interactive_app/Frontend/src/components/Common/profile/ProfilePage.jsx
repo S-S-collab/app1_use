@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ProfileHeader from './ProfileHeader';
 import ProfilePosts from './ProfilePosts';
-import './ProfilePage.css';
+import './Styles/ProfilePage.css';
 const ProfilePage = () => {
   const [user, setUser] = useState(null);
   const [posts, setPosts] = useState([]);
