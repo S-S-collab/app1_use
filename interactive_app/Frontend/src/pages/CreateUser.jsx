@@ -1,32 +1,32 @@
-import { useState } from 'react';
-import './Styles/CreateUser.css';
+import { useState } from "react";
+import "../../Styles/CreateUser.css";
 
 const CreateUser = () => {
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [profilePicture, setProfilePicture] = useState(null);
-  const [bio, setBio] = useState('');
+  const [bio, setBio] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const formData = new FormData();
-    formData.append('username', username);
-    formData.append('email', email);
-    formData.append('password', password);
-    formData.append('profile_picture', profilePicture);
-    formData.append('bio', bio);
+    formData.append("username", username);
+    formData.append("email", email);
+    formData.append("password", password);
+    formData.append("profile_picture", profilePicture);
+    formData.append("bio", bio);
 
-    fetch('/api/users', {
-      method: 'POST',
+    fetch("/api/users", {
+      method: "POST",
       body: formData,
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log('User created:', data);
+        console.log("User created:", data);
       })
       .catch((error) => {
-        console.error('Error creating user:', error);
+        console.error("Error creating user:", error);
       });
   };
 

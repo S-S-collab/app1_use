@@ -83,7 +83,7 @@ export const Signup = () => {
                     }
                   );
                   localStorage.setItem("token", response.data.token);
-                  navigate("/Home");
+                  navigate("/");
                 } catch (error) {
                   if (error.response && error.response.status === 400) {
                     setErrorMessage("Email already in use");
