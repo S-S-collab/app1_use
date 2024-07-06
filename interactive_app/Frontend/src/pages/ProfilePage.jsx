@@ -1,20 +1,20 @@
-import React from 'react';
-import './Styles/ProfilePage.css';
+import React from "react";
+import "../Styles/ProfilePage.css";
 
-const ProfilePage = ({ username }) => {
+export const ProfilePage = ({ username }) => {
   const [user, setUser] = React.useState(null);
   const [posts, setPosts] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
 
   React.useEffect(() => {
     fetch(`/api/users/${username}`)
-     .then(response => response.json())
-     .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         setUser(data.user);
         setPosts(data.posts);
         setLoading(false);
       })
-     .catch(error => {
+      .catch((error) => {
         console.error(error);
       });
   }, [username]);
@@ -37,7 +37,7 @@ const ProfilePage = ({ username }) => {
         </div>
       </header>
       <div className="posts">
-        {posts.map(post => (
+        {posts.map((post) => (
           <Post key={post.id} post={post} />
         ))}
       </div>
@@ -55,5 +55,3 @@ const Post = ({ post }) => {
     </div>
   );
 };
-
-export default ProfilePage;

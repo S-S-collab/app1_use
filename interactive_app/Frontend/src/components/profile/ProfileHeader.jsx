@@ -1,5 +1,5 @@
-import React from 'react';
-import './Styles/ProfileHeader.css';
+import React from "react";
+import "../../Styles/ProfileHeader.css";
 
 const ProfileHeader = ({ user }) => {
   return (
@@ -11,9 +11,15 @@ const ProfileHeader = ({ user }) => {
         <h2>{user.username}</h2>
         <p>{user.bio}</p>
         <div className="profile-stats">
-          <span><strong>{user.postsCount}</strong> posts</span>
-          <span><strong>{user.followersCount}</strong> followers</span>
-          <span><strong>{user.followingCount}</strong> following</span>
+          <span>
+            <strong>{user.postsCount}</strong> posts
+          </span>
+          <span>
+            <strong>{user.followersCount}</strong> followers
+          </span>
+          <span>
+            <strong>{user.followingCount}</strong> following
+          </span>
         </div>
       </div>
     </div>
