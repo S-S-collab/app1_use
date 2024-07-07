@@ -1,5 +1,6 @@
 import React from "react";
 import "../Styles/ProfilePage.css";
+import { ProfilePosts } from "../components/profile/ProfilePosts";
 
 export const ProfilePage = ({ username }) => {
   const [user, setUser] = React.useState(null);
@@ -45,13 +46,3 @@ export const ProfilePage = ({ username }) => {
   );
 };
 
-const Post = ({ post }) => {
-  return (
-    <div className="post">
-      <img src={post.image} alt={post.caption} />
-      <div className="caption">
-        <p>{post.caption}</p>
-      </div>
-    </div>
-  );
-};
