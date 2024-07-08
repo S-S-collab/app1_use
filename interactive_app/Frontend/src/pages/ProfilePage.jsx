@@ -1,5 +1,8 @@
 import React from "react";
 import "../Styles/ProfilePage.css";
+import { ProfilePosts } from "../components/profile/ProfilePosts";
+import { ProfileHeader } from "../components/profile/ProfileHeader";
+
 
 export const ProfilePage = ({ username }) => {
   const [user, setUser] = React.useState(null);
@@ -35,7 +38,10 @@ export const ProfilePage = ({ username }) => {
         <div className="bio">
           <p>{user.bio}</p>
         </div>
-      </header>
+        <div className="profile-stats">
+          <p>{user.postsCount}</p>
+        </div>
+        </header>
       <div className="posts">
         {posts.map((post) => (
           <Post key={post.id} post={post} />
@@ -45,13 +51,3 @@ export const ProfilePage = ({ username }) => {
   );
 };
 
-const Post = ({ post }) => {
-  return (
-    <div className="post">
-      <img src={post.image} alt={post.caption} />
-      <div className="caption">
-        <p>{post.caption}</p>
-      </div>
-    </div>
-  );
-};
