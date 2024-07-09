@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Signup } from "./pages/Signup";
 import { Signin } from "./pages/Signin";
 import { ProfilePage } from "./pages/ProfilePage";
+import { CreateUserProfile } from "./pages/CreateUserProfile";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/signin" element={<Signin />} />
           <Route path="/profilepage" element={<ProfilePage />} />
+          <Route path="/createprofile" element={<CreateUserProfile />} />
         </Routes>
       </BrowserRouter>
     </>

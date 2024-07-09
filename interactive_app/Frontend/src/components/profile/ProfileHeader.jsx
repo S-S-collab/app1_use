@@ -1,7 +1,7 @@
 import React from "react";
 import "../../Styles/ProfileHeader.css";
 
-const ProfileHeader = ({ user }) => {
+export const ProfileHeader = ({ user }) => {
   return (
     <div className="profile-header">
       <div className="profile-avatar">
@@ -25,5 +25,3 @@ const ProfileHeader = ({ user }) => {
     </div>
   );
 };
-
-export default ProfileHeader;

@@ -1,7 +1,7 @@
 import React from "react";
 import "../../Styles/ProfilePosts.css";
 
-const ProfilePosts = ({ posts }) => {
+export const ProfilePosts = ({ posts }) => {
   return (
     <div className="profile-posts">
       {posts.map((post) => (
@@ -12,5 +12,3 @@ const ProfilePosts = ({ posts }) => {
     </div>
   );
 };
-
-export default ProfilePosts;
