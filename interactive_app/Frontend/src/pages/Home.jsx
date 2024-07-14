@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import Tweet from './Tweet';
+import { useState, useEffect } from "react";
+import Thought from "../components/profile/Thoughts";
 
 export const HomePage = () => {
   const [thoughts, setThoughts] = useState("");
